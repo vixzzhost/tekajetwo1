@@ -651,7 +651,11 @@
             <!-- Foto Tab -->
             <div id="foto-tab" class="hidden">
                 <h2>📸 Momen Berharga Kita</h2>
-                <div class="gallery-grid" id="galleryGrid"></div>
+                <div id="gallery" style="
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+"></div>
             </div>
         </div>
     </div>
@@ -714,6 +718,32 @@
             { judul: "Pawai", deskripsi: "Pawai Maulid Nabi Muhammad SAW", foto: "img/foto_5.jpg" },
             { judul: "Study Tour", deskripsi: "Kunjungan Ke Tempat Wisata", foto: "img/foto_6.jpg" }
         ];
+
+        const container = document.getElementById("gallery");
+
+gallery.forEach(item => {
+    container.innerHTML += `
+        <div style="
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        ">
+            <div style="height:180px;">
+                <img src="${item.foto}" alt="${item.judul}" style="
+                    width:100%;
+                    height:100%;
+                    object-fit: cover;
+                ">
+            </div>
+            <div style="padding:12px;">
+                <h4 style="margin:0 0 6px 0;">${item.judul}</h4>
+                <p style="margin:0; font-size:14px; color:#555;">
+                    ${item.deskripsi}
+                </p>
+            </div>
+        </div>
+    `;
 
         // Render Members
         function renderMembers() {
@@ -790,4 +820,5 @@ function renderGallery() {
     </script>
 </body>
 </html>
+
 
