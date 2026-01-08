@@ -485,6 +485,14 @@
             color: white;
             font-size: 4em;
             position: relative;
+            overflow: hidden;
+        }
+
+          .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         .gallery-item:nth-child(1) .gallery-image { background: linear-gradient(135deg, #f093fb, #f5576c); }
@@ -754,23 +762,22 @@
             `).join('');
         }
 
-// Render Gallery
-function renderGallery() {
-    const grid = document.getElementById('galleryGrid');
-
-    grid.innerHTML = gallery.map(item => `
-        <div class="gallery-item">
-            <div class="gallery-image" 
-                 style="background-image: url('${item.foto}')">
-            </div>
-
-            <div class="gallery-overlay">
-                <div class="gallery-title">${item.judul}</div>
-                <div class="gallery-desc">${item.deskripsi}</div>
-            </div>
-        </div>
-    `).join('');
-}
+        // Render Gallery
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = gallery.map(function(item) {
+                return '<div class="gallery-item">' +
+                    '<div class="gallery-image">' +
+                    '<img src="' + item.foto + '" alt="' + item.judul + '" onerror="this.style.display=\'none\'; this.parentElement.innerHTML=\'📸\';">' +
+                    '</div>' +
+                    '<div class="gallery-overlay">' +
+                    '<div class="gallery-title">' + item.judul + '</div>' +
+                    '<div class="gallery-desc">' + item.deskripsi + '</div>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+        }
+        
         // Show Tab
         function showTab(tabName) {
             // Hide all tabs
@@ -796,6 +803,7 @@ function renderGallery() {
     </script>
 </body>
 </html>
+
 
 
 
