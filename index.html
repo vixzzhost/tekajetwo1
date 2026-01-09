@@ -226,19 +226,17 @@
         /* Member Cards */
         .member-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .member-card {
             background: white;
             border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            border-top: 3px solid;
-            position: relative;
-            overflow: hidden;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .member-card::before {
@@ -253,44 +251,47 @@
 
         .member-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .member-avatar {
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+
         .member-name {
-            font-size: 1.2em;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 0.5rem;
         }
 
         .member-nisn {
-            color: #999;
-            font-size: 0.85em;
-            margin-bottom: 10px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
         .member-role {
             display: inline-block;
-            padding: 5px 15px;
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.8em;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 10px;
+            margin-bottom: 0.5rem;
         }
 
         .member-role.leader {
@@ -685,7 +686,7 @@
             { nama: "Muhammad Naufal Azhar", nisn: "0107400363", jabatan: "Anggota", prestasi: "Tidak dapat bicara, WhatsApp saja" },
             { nama: "Muhammad Vico Ardiansyah", nisn: "0051234573", jabatan: "CEO Forex", prestasi: "-" },
             { nama: "Imam Lutpi Syarifudin", nisn: "0051234574", jabatan: "Trader Crypto", prestasi: "WCembilan" },
-            { nama: "Muhammad Fikri Chamdani", nisn: "0099288291", jabatan: "CEO Of Skytech", prestasi: "Membantu Kucing Lahiran" },
+            { nama: "Muhammad Fikri Chamdani", nisn: "0099288291", jabatan: "CEO Of Skytech", prestasi: "Membantu Kucing Lahiran", foto: "img/profil11" },
             { nama: "Ibrahim farel Friansyah", nisn: "0051234576", jabatan: "Anggota", prestasi: "Turu Nang kelas " },
             { nama: "Muhammad Sidiq Akbar", nisn: "0051234576", jabatan: "Osis", prestasi: "pemancing" },
             { nama: "Ferdy Dwi Ardiansyah", nisn: "0051234576", jabatan: "Osis", prestasi: "Hafizh Qur`an" },
@@ -738,7 +739,9 @@
             const grid = document.getElementById('memberGrid');
             grid.innerHTML = members.map((member, index) => `
                 <div class="member-card">
-                    <div class="member-avatar">${member.nama.charAt(0)}</div>
+                    <div class="member-avatar">
+                        <img src="${member.foto}" alt="${member.nama}">
+                    </div>
                     <div class="member-name">${member.nama}</div>
                     <div class="member-nisn">${member.nisn}</div>
                     <div class="member-role ${member.jabatan !== 'Anggota' ? 'leader' : 'member'}">
@@ -807,6 +810,7 @@
     </script>
 </body>
 </html>
+
 
 
 
